@@ -3,9 +3,12 @@ import { useEffect } from 'react';
 
 const GlowCard = ({ children , identifier}) => {
   useEffect(() => {
-    const CONTAINER = document?.querySelector(`.glow-container-${identifier}`);
-    const CARDS = document?.querySelectorAll(`.glow-card-${identifier}`);
-
+    let CONTAINER;
+    let CARDS;
+    if (typeof window !== 'undefined') {
+     CONTAINER = document?.querySelector(`.glow-container-${identifier}`);
+     CARDS = document?.querySelectorAll(`.glow-card-${identifier}`);
+    }
     const CONFIG = {
       proximity: 40,
       spread: 80,
@@ -60,10 +63,11 @@ const GlowCard = ({ children , identifier}) => {
 
     RESTYLE();
     UPDATE();
-
     // Cleanup event listener
     return () => {
-      document?.body.removeEventListener('pointermove', UPDATE);
+      if (typeof window !== 'undefined') {
+       document?.body.removeEventListener('pointermove', UPDATE);
+      }
     };
   }, [identifier]);
 
