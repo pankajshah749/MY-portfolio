@@ -3,12 +3,9 @@ import { useEffect } from 'react';
 
 const GlowCard = ({ children , identifier}) => {
   useEffect(() => {
-    let CONTAINER;
-    let CARDS;
-    if (typeof window !== 'undefined') {
-     CONTAINER = document?.querySelector(`.glow-container-${identifier}`);
-     CARDS = document?.querySelectorAll(`.glow-card-${identifier}`);
-    }
+    const CONTAINER = window.document.querySelector(`.glow-container-${identifier}`);
+    const CARDS = window.document.querySelectorAll(`.glow-card-${identifier}`);
+
     const CONFIG = {
       proximity: 40,
       spread: 80,
@@ -49,7 +46,7 @@ const GlowCard = ({ children , identifier}) => {
       }
     };
 
-    document?.body.addEventListener('pointermove', UPDATE);
+    window.document.body.addEventListener('pointermove', UPDATE);
 
     const RESTYLE = () => {
       CONTAINER.style.setProperty('--gap', CONFIG.gap);
@@ -63,11 +60,10 @@ const GlowCard = ({ children , identifier}) => {
 
     RESTYLE();
     UPDATE();
+
     // Cleanup event listener
     return () => {
-      if (typeof window !== 'undefined') {
-       document?.body.removeEventListener('pointermove', UPDATE);
-      }
+      window.document.body.removeEventListener('pointermove', UPDATE);
     };
   }, [identifier]);
 
