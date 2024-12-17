@@ -13,7 +13,7 @@ export default async function Home() {
     <>
       <HeroSection />
       <AboutSection />
-      <Experience />
+      {/* <Experience /> */}
       <Skills />
       <Projects />
       <Education />
