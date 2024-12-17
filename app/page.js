@@ -1,7 +1,15 @@
 import AboutSection from "./components/homepage/about";
 import ContactSection from "./components/homepage/contact";
-import Education from "./components/homepage/education";
-import Experience from "./components/homepage/experience";
+import dynamic from "next/dynamic";
+
+// Dynamically import Education and Experience components
+const Education = dynamic(() => import("./components/homepage/education"), {
+  ssr: false, // Disable server-side rendering
+});
+
+const Experience = dynamic(() => import("./components/homepage/experience"), {
+  ssr: false, // Disable server-side rendering
+});
 import HeroSection from "./components/homepage/hero-section";
 import Projects from "./components/homepage/projects";
 import Skills from "./components/homepage/skills";
@@ -13,10 +21,10 @@ export default async function Home() {
     <>
       <HeroSection />
       <AboutSection />
-      {/* <Experience /> */}
+      <Experience />
       <Skills />
       <Projects />
-      {/* <Education /> */}
+      <Education />
       {/* <Blog blogs={blogs} /> */}
       <ContactSection />
     </>
