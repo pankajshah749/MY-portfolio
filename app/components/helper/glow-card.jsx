@@ -65,7 +65,7 @@ const GlowCard = ({ children , identifier}) => {
     return () => {
       window.document.body.removeEventListener('pointermove', UPDATE);
     };
-  }, [identifier]);
+  }, []);
 
   return (
     <div className={`glow-container-${identifier} glow-container`}>
